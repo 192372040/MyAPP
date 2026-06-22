@@ -1,0 +1,51 @@
+Test Case ID,Test Case Name,API Endpoint,HTTP Method,Expected Status,Actual Status,Verdict,Response Message
+TC001,Admin Registration - Success,/api/admin/register,POST,201,201,PASS,Hospital registered successfully.
+TC002,Admin Registration - Missing Fields,/api/admin/register,POST,400,400,PASS,"All fields (name, address, email, password) are required."
+TC003,Admin Login - Success,/api/admin/login,POST,200,200,PASS,"{'id': 'HOSP001', 'name': 'City General Hospital', 'role': 'admin', 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJIT1NQMDAxIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IkNpdHkgR2VuZXJhbCBIb3NwaXRhbCIsImV4cCI6MTc4MTY3MDQyMiwiaWF0IjoxNzgxNTg0MDIyfQ.kOVXMHybXVZeSeM0uvx1gPPi7TzKqISghbwJ1ecF28Q'}"
+TC004,Admin Login - Invalid Credentials,/api/admin/login,POST,401,401,PASS,Invalid Hospital ID or password.
+TC005,Doctor Registration - Success,/api/doctor/register,POST,201,201,PASS,Doctor registered successfully.
+TC006,Doctor Registration - Missing Qualification,/api/doctor/register,POST,400,400,PASS,All fields are required.
+TC007,Doctor Login - Success,/api/doctor/login,POST,200,200,PASS,"{'id': 'DOC001', 'name': 'Dr. Sarah Connor', 'role': 'doctor', 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJET0MwMDEiLCJyb2xlIjoiZG9jdG9yIiwibmFtZSI6IkRyLiBTYXJhaCBDb25ub3IiLCJleHAiOjE3ODE2NzA0MjIsImlhdCI6MTc4MTU4NDAyMn0.m9Osb6Nsqp56P3KNZwonJBbmQWoKMintjl8WXPLHEQE'}"
+TC008,Doctor Login - Missing ID,/api/doctor/login,POST,400,400,PASS,doctor_id and password are required.
+TC009,Patient OTP Send - Success,/api/patient/otp/send,POST,200,200,PASS,Verification code (OTP) sent to email.
+TC010,Patient OTP Send - Missing Email,/api/patient/otp/send,POST,400,400,PASS,Email address is required.
+TC011,Patient Registration - Success,/api/patient/register,POST,201,201,PASS,Patient registered and verified successfully.
+TC012,Patient Registration - Invalid OTP,/api/patient/register,POST,400,400,PASS,Invalid or expired OTP verification code.
+TC013,Patient Login - Success,/api/patient/login,POST,200,200,PASS,"{'id': 42, 'name': 'John Doe', 'role': 'patient', 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MiIsInJvbGUiOiJwYXRpZW50IiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzgxNjcwNDIyLCJpYXQiOjE3ODE1ODQwMjJ9.v6OCtBee5CQW2ITP9C5Ekfvw0G5mGSpVdfbiUFKic0U'}"
+TC014,Doctor Add Availability Slot - Success,/api/doctor/slots,POST,201,201,PASS,Availability slot added successfully.
+TC015,Doctor Add Availability Slot - Missing Date,/api/doctor/slots,POST,400,400,PASS,Date and time are required fields.
+TC016,Patient Book Appointment - Success,/api/patient/appointment/book,POST,201,201,PASS,Appointment booked successfully.
+TC017,Patient Book Appointment - Missing Doctor ID,/api/patient/appointment/book,POST,400,400,PASS,"doctor_id, hospital_id, date, and time are required fields."
+TC018,Doctor Create Prescription - Success,/api/doctor/prescription/create,POST,201,201,PASS,Prescription saved and appointment completed.
+TC019,Doctor Create Prescription - Missing Appointment ID,/api/doctor/prescription/create,POST,400,400,PASS,"appointment_id, diagnosis, and medicines are required."
+TC020,AI Chat Assistant - Success,/api/ai/chat,POST,200,200,PASS,"{'is_health_related': True, 'reply': '### General Health & Wellness Advice\n- **Sleep Hygiene:** Ensure you receive 7-9 hours of quality sleep per night.\n- **Regular Screenings:** Schedule routine checkups with your primary care provider.\n- **Mental Well-being:** Dedicate 10-15 minutes daily to stress-reducing activities, such as meditation or deep-breathing exercises.\n- **Active Lifestyle:** Take regular breaks to stand and stretch if your work is mostly sedentary.\n\nDisclaimer: I am an AI, not a doctor. Please consult a qualified medical professional for specific diagnosis and treatments.'}"
+TC021,Admin View Doctors - Success,/api/admin/doctors,GET,200,200,PASS,"[{'id': 'DOC001', 'name': 'Dr. Sarah Connor'}]"
+TC022,Admin View Doctors - Unauthorized,/api/admin/doctors,GET,401,401,PASS,Token is missing!
+TC023,Admin View Doctors - Forbidden,/api/admin/doctors,GET,403,403,PASS,Access forbidden: ['admin'] role required.
+TC024,Admin View Patients - Success,/api/admin/patients,GET,200,200,PASS,"[{'id': 42, 'name': 'John Doe'}]"
+TC025,Admin View Patients - Unauthorized,/api/admin/patients,GET,401,401,PASS,Token is missing!
+TC026,Admin View Patients - Forbidden,/api/admin/patients,GET,403,403,PASS,Access forbidden: ['admin'] role required.
+TC027,Admin View Appointments - Success,/api/admin/appointments,GET,200,200,PASS,"[{'doctor_id': 'DOC001', 'id': 101, 'patient_id': 42}]"
+TC028,Admin View Appointments - Unauthorized,/api/admin/appointments,GET,401,401,PASS,Token is missing!
+TC029,Admin View Appointments - Forbidden,/api/admin/appointments,GET,403,403,PASS,Access forbidden: ['admin'] role required.
+TC030,Doctor View Appointments - Success,/api/doctor/appointments,GET,200,200,PASS,"[{'hospital_id': 'HOSP001', 'id': 101, 'patient_id': 42}]"
+TC031,Doctor View Appointments - Unauthorized,/api/doctor/appointments,GET,401,401,PASS,Token is missing!
+TC032,Doctor View Appointments - Forbidden,/api/doctor/appointments,GET,403,403,PASS,Access forbidden: ['doctor'] role required.
+TC033,Doctor Get Own Slots - Success,/api/doctor/slots,GET,200,200,PASS,"[{'id': 1, 'is_booked': False, 'slot_date': '2026-06-15', 'slot_time': '10:30:00'}]"
+TC034,Doctor Get Own Slots - Unauthorized,/api/doctor/slots,GET,401,401,PASS,Token is missing!
+TC035,Doctor Get Own Slots - Forbidden,/api/doctor/slots,GET,403,403,PASS,Access forbidden: ['doctor'] role required.
+TC036,Patient View Hospitals - Success,/api/patient/hospitals,GET,200,200,PASS,"[{'id': 'HOSP001', 'name': 'City General Hospital'}]"
+TC037,Patient View Hospitals - Unauthorized,/api/patient/hospitals,GET,401,401,PASS,Token is missing!
+TC038,Patient View Hospitals - Forbidden,/api/patient/hospitals,GET,403,403,PASS,Access forbidden: ['patient'] role required.
+TC039,Patient View Appointments - Success,/api/patient/appointments,GET,200,200,PASS,"[{'doctor_id': 'DOC001', 'hospital_id': 'HOSP001', 'id': 101}]"
+TC040,Patient View Appointments - Unauthorized,/api/patient/appointments,GET,401,401,PASS,Token is missing!
+TC041,Patient View Appointments - Forbidden,/api/patient/appointments,GET,403,403,PASS,Access forbidden: ['patient'] role required.
+TC042,Patient View Prescriptions - Success,/api/patient/prescriptions,GET,200,200,PASS,"[{'diagnosis': 'Seasonal Allergies', 'id': 501}]"
+TC043,Patient View Prescriptions - Unauthorized,/api/patient/prescriptions,GET,401,401,PASS,Token is missing!
+TC044,Patient View Prescriptions - Forbidden,/api/patient/prescriptions,GET,403,403,PASS,Access forbidden: ['patient'] role required.
+TC045,Doctor View Prescriptions - Success,/api/doctor/prescriptions,GET,200,200,PASS,"[{'diagnosis': 'Seasonal Allergies', 'id': 501}]"
+TC046,Doctor View Prescriptions - Unauthorized,/api/doctor/prescriptions,GET,401,401,PASS,Token is missing!
+TC047,Doctor View Prescriptions - Forbidden,/api/doctor/prescriptions,GET,403,403,PASS,Access forbidden: ['doctor'] role required.
+TC048,Admin Associate Doctor - Success,/api/admin/doctor/add,POST,200,200,PASS,Doctor associated with hospital successfully.
+TC049,Admin Associate Doctor - Missing Doctor ID,/api/admin/doctor/add,POST,400,400,PASS,Doctor ID is required.
+TC050,Admin Associate Doctor - Forbidden,/api/admin/doctor/add,POST,403,403,PASS,Access forbidden: ['admin'] role required.
