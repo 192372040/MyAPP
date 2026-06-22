@@ -1,0 +1,16 @@
+com\medicate\framework\pages\patient\PatientRegisterPage.class
+com\medicate\framework\utils\WaitUtils.class
+com\medicate\framework\listeners\RetryAnalyzer.class
+com\medicate\framework\utils\AccessibilityUtils.class
+com\medicate\framework\driver\DriverFactory.class
+com\medicate\framework\pages\BasePage.class
+com\medicate\framework\pages\shared\AiChatAssistantPage.class
+com\medicate\framework\listeners\TestListener.class
+com\medicate\framework\pages\admin\AdminLoginPage.class
+com\medicate\framework\pages\doctor\DoctorLoginPage.class
+com\medicate\framework\pages\patient\AppointmentBookingPage.class
+com\medicate\framework\pages\patient\PatientLoginPage.class
+com\medicate\framework\pages\doctor\PrescriptionCreationPage.class
+com\medicate\framework\utils\ScreenshotUtils.class
+com\medicate\framework\pages\doctor\DoctorRegisterPage.class
+com\medicate\framework\pages\doctor\SlotManagementPage.class

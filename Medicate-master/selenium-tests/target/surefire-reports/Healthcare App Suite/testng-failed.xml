@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="4" parallel="methods" name="Failed suite [Healthcare App Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.medicate.framework.listeners.TestListener"/>
+  </listeners>
+  <test thread-count="4" parallel="methods" name="Chrome Functional Tests(failed)" verbose="0">
+    <parameter name="headless" value="true"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="appUrl" value="http://localhost:8080"/>
+    <classes>
+      <class name="com.medicate.tests.HealthcareTests">
+        <methods>
+          <include name="testDoctorLoginResponsive"/>
+          <include name="testPatientLoginWrongPassword"/>
+          <include name="testPatientRegisterSuccess"/>
+          <include name="testSlotManagementPastDate"/>
+          <include name="testSharedWelcomePageRedirects"/>
+          <include name="testPatientRegisterOTPBlankEmail"/>
+          <include name="testAppointmentBookingSuccess"/>
+          <include name="testDoctorRegisterInvalidEmail"/>
+          <include name="testAIChatQuerySuccess"/>
+          <include name="testDoctorRegisterBackWelcome"/>
+          <include name="testDoctorRegisterUI"/>
+          <include name="testPatientLoginUI"/>
+          <include name="testSlotManagementBlankSubmit"/>
+          <include name="testAdminLoginUI"/>
+          <include name="testDoctorLoginInvalidPassword"/>
+          <include name="testAdminLogout"/>
+          <include name="testPatientRegisterUI"/>
+          <include name="testDoctorLoginDirectBypass"/>
+          <include name="testDoctorLoginSuccess"/>
+          <include name="testPatientLoginSuccess"/>
+          <include name="testAdminLoginSuccess"/>
+          <include name="testDoctorRegisterSuccess"/>
+          <include name="testAdminPasswordMasking"/>
+          <include name="testAdminLoginBlankPassword"/>
+          <include name="testDoctorRegisterBlankEmail"/>
+          <include name="testDoctorLoginBlank"/>
+          <include name="testPrescriptionCreateMissingDetails"/>
+          <include name="testAdminLoginInvalidID"/>
+          <include name="testPatientLoginInvalidEmail"/>
+          <include name="testPatientLoginBypassPrevention"/>
+          <include name="testAdminLoginInvalidPassword"/>
+          <include name="testSlotManagementViewSlots"/>
+          <include name="testPatientRegisterRedirectionLink"/>
+          <include name="testAIChatHTMLSanitization"/>
+          <include name="testPatientRegisterSendOTP"/>
+          <include name="testDoctorRegisterBlankForm"/>
+          <include name="testDoctorLoginInvalidID"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="testAIChatOutOfScopePrompt"/>
+          <include name="testPatientRegisterInvalidOTP"/>
+          <include name="testSlotManagementAddSuccess"/>
+          <include name="testDoctorRegisterWeakPassword"/>
+          <include name="testDoctorLoginUI"/>
+          <include name="testPrescriptionCreateSuccess"/>
+          <include name="testDoctorRegisterAccessibility"/>
+          <include name="testAdminLoginBlankID"/>
+          <include name="testAppointmentBookingMissingDetails"/>
+          <include name="testDoctorLoginSQLInjection"/>
+          <include name="testAIChatEmptySubmit"/>
+        </methods>
+      </class> <!-- com.medicate.tests.HealthcareTests -->
+    </classes>
+  </test> <!-- Chrome Functional Tests(failed) -->
+</suite> <!-- Failed suite [Healthcare App Suite] -->

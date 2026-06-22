@@ -1,0 +1,38 @@
+# Environments and sensitive files
+.env
+*.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv/
+ENV/
+env/
+.pytest_cache/
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+# Ignore intermediate build files but allow the final web build folder
+/frontend/build/*
+!/frontend/build/web/
+*.ipr
+*.iws
+*.iml
+.idea/
+.vscode/
+
+# System files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Load test generated outputs (CSVs are auto-created on each run)
+backend/load_tests/load_results*.csv
+backend/load_tests/__pycache__/

@@ -1,0 +1,16 @@
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\driver\DriverFactory.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\listeners\RetryAnalyzer.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\listeners\TestListener.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\admin\AdminLoginPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\BasePage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\doctor\DoctorLoginPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\doctor\DoctorRegisterPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\doctor\PrescriptionCreationPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\doctor\SlotManagementPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\patient\AppointmentBookingPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\patient\PatientLoginPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\patient\PatientRegisterPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\pages\shared\AiChatAssistantPage.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\utils\AccessibilityUtils.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\utils\ScreenshotUtils.java
+C:\Users\asusr\Downloads\Medicate-master\Medicate-master\selenium-tests\src\main\java\com\medicate\framework\utils\WaitUtils.java

@@ -1,0 +1,5 @@
+com\medicate\appium\pages\shared\MobileAiChatPage.class
+com\medicate\appium\pages\doctor\MobileSlotManagementPage.class
+com\medicate\appium\pages\patient\MobileAppointmentBookingPage.class
+com\medicate\appium\pages\MobileBasePage.class
+com\medicate\appium\pages\patient\MobilePatientLoginPage.class
