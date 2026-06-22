@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:5000",
+  "patient": "PATIENT_TOKEN_HERE",
+  "doctor":  "DOCTOR_TOKEN_HERE",
+  "admin":   "ADMIN_TOKEN_HERE"
+}
