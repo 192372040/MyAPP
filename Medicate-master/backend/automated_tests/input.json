@@ -1,0 +1,487 @@
+{
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "Admin Registration - Success",
+      "endpoint": "/api/admin/register",
+      "method": "POST",
+      "payload": {
+        "name": "City General Hospital",
+        "address": "123 Health Ave, NY",
+        "email": "admin@citygeneral.com",
+        "password": "AdminSecurePassword123"
+      },
+      "expected_status": 201
+    },
+    {
+      "id": "TC002",
+      "name": "Admin Registration - Missing Fields",
+      "endpoint": "/api/admin/register",
+      "method": "POST",
+      "payload": {
+        "name": "City General Hospital",
+        "email": "admin@citygeneral.com"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC003",
+      "name": "Admin Login - Success",
+      "endpoint": "/api/admin/login",
+      "method": "POST",
+      "payload": {
+        "hospital_id": "HOSP001",
+        "password": "AdminSecurePassword123"
+      },
+      "expected_status": 200
+    },
+    {
+      "id": "TC004",
+      "name": "Admin Login - Invalid Credentials",
+      "endpoint": "/api/admin/login",
+      "method": "POST",
+      "payload": {
+        "hospital_id": "HOSP001",
+        "password": "WrongPassword123"
+      },
+      "expected_status": 401
+    },
+    {
+      "id": "TC005",
+      "name": "Doctor Registration - Success",
+      "endpoint": "/api/doctor/register",
+      "method": "POST",
+      "payload": {
+        "name": "Dr. Sarah Connor",
+        "specialization": "Cardiology",
+        "qualification": "MD, FACC",
+        "experience": 12,
+        "phone": "+15550192",
+        "email": "sarah@citygeneral.com",
+        "password": "DoctorSecretPassword123"
+      },
+      "expected_status": 201
+    },
+    {
+      "id": "TC006",
+      "name": "Doctor Registration - Missing Qualification",
+      "endpoint": "/api/doctor/register",
+      "method": "POST",
+      "payload": {
+        "name": "Dr. Sarah Connor",
+        "specialization": "Cardiology",
+        "experience": 12,
+        "phone": "+15550192",
+        "email": "sarah@citygeneral.com",
+        "password": "DoctorSecretPassword123"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC007",
+      "name": "Doctor Login - Success",
+      "endpoint": "/api/doctor/login",
+      "method": "POST",
+      "payload": {
+        "doctor_id": "DOC001",
+        "password": "DoctorSecretPassword123"
+      },
+      "expected_status": 200
+    },
+    {
+      "id": "TC008",
+      "name": "Doctor Login - Missing ID",
+      "endpoint": "/api/doctor/login",
+      "method": "POST",
+      "payload": {
+        "password": "DoctorSecretPassword123"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC009",
+      "name": "Patient OTP Send - Success",
+      "endpoint": "/api/patient/otp/send",
+      "method": "POST",
+      "payload": {
+        "email": "john.doe@gmail.com"
+      },
+      "expected_status": 200
+    },
+    {
+      "id": "TC010",
+      "name": "Patient OTP Send - Missing Email",
+      "endpoint": "/api/patient/otp/send",
+      "method": "POST",
+      "payload": {},
+      "expected_status": 400
+    },
+    {
+      "id": "TC011",
+      "name": "Patient Registration - Success",
+      "endpoint": "/api/patient/register",
+      "method": "POST",
+      "payload": {
+        "name": "John Doe",
+        "email": "john.doe@gmail.com",
+        "password": "PatientPassword123",
+        "phone": "+15550100",
+        "otp": "112233"
+      },
+      "expected_status": 201
+    },
+    {
+      "id": "TC012",
+      "name": "Patient Registration - Invalid OTP",
+      "endpoint": "/api/patient/register",
+      "method": "POST",
+      "payload": {
+        "name": "John Doe",
+        "email": "john.doe@gmail.com",
+        "password": "PatientPassword123",
+        "phone": "+15550100",
+        "otp": "999999"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC013",
+      "name": "Patient Login - Success",
+      "endpoint": "/api/patient/login",
+      "method": "POST",
+      "payload": {
+        "email": "john.doe@gmail.com",
+        "password": "PatientPassword123"
+      },
+      "expected_status": 200
+    },
+    {
+      "id": "TC014",
+      "name": "Doctor Add Availability Slot - Success",
+      "endpoint": "/api/doctor/slots",
+      "method": "POST",
+      "role": "doctor",
+      "payload": {
+        "date": "2026-06-15",
+        "time": "10:30:00"
+      },
+      "expected_status": 201
+    },
+    {
+      "id": "TC015",
+      "name": "Doctor Add Availability Slot - Missing Date",
+      "endpoint": "/api/doctor/slots",
+      "method": "POST",
+      "role": "doctor",
+      "payload": {
+        "time": "10:30:00"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC016",
+      "name": "Patient Book Appointment - Success",
+      "endpoint": "/api/patient/appointment/book",
+      "method": "POST",
+      "role": "patient",
+      "payload": {
+        "doctor_id": "DOC001",
+        "hospital_id": "HOSP001",
+        "date": "2026-06-15",
+        "time": "10:30:00",
+        "symptoms": "Mild fatigue and sore throat",
+        "slot_id": 1
+      },
+      "expected_status": 201
+    },
+    {
+      "id": "TC017",
+      "name": "Patient Book Appointment - Missing Doctor ID",
+      "endpoint": "/api/patient/appointment/book",
+      "method": "POST",
+      "role": "patient",
+      "payload": {
+        "hospital_id": "HOSP001",
+        "date": "2026-06-15",
+        "time": "10:30:00"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC018",
+      "name": "Doctor Create Prescription - Success",
+      "endpoint": "/api/doctor/prescription/create",
+      "method": "POST",
+      "role": "doctor",
+      "payload": {
+        "appointment_id": 101,
+        "diagnosis": "Seasonal Allergies",
+        "medicines": "Cetirizine 10mg: Once daily before sleep",
+        "instructions": "Avoid allergens",
+        "follow_up_date": "2026-06-30"
+      },
+      "expected_status": 201
+    },
+    {
+      "id": "TC019",
+      "name": "Doctor Create Prescription - Missing Appointment ID",
+      "endpoint": "/api/doctor/prescription/create",
+      "method": "POST",
+      "role": "doctor",
+      "payload": {
+        "diagnosis": "Seasonal Allergies",
+        "medicines": "Cetirizine 10mg: Once daily before sleep"
+      },
+      "expected_status": 400
+    },
+    {
+      "id": "TC020",
+      "name": "AI Chat Assistant - Success",
+      "endpoint": "/api/ai/chat",
+      "method": "POST",
+      "role": "patient",
+      "payload": {
+        "message": "What are the common symptoms of flu?"
+      },
+      "expected_status": 200
+    },
+    {
+      "id": "TC021",
+      "name": "Admin View Doctors - Success",
+      "endpoint": "/api/admin/doctors",
+      "method": "GET",
+      "role": "admin",
+      "expected_status": 200
+    },
+    {
+      "id": "TC022",
+      "name": "Admin View Doctors - Unauthorized",
+      "endpoint": "/api/admin/doctors",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC023",
+      "name": "Admin View Doctors - Forbidden",
+      "endpoint": "/api/admin/doctors",
+      "method": "GET",
+      "role": "doctor",
+      "expected_status": 403
+    },
+    {
+      "id": "TC024",
+      "name": "Admin View Patients - Success",
+      "endpoint": "/api/admin/patients",
+      "method": "GET",
+      "role": "admin",
+      "expected_status": 200
+    },
+    {
+      "id": "TC025",
+      "name": "Admin View Patients - Unauthorized",
+      "endpoint": "/api/admin/patients",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC026",
+      "name": "Admin View Patients - Forbidden",
+      "endpoint": "/api/admin/patients",
+      "method": "GET",
+      "role": "patient",
+      "expected_status": 403
+    },
+    {
+      "id": "TC027",
+      "name": "Admin View Appointments - Success",
+      "endpoint": "/api/admin/appointments",
+      "method": "GET",
+      "role": "admin",
+      "expected_status": 200
+    },
+    {
+      "id": "TC028",
+      "name": "Admin View Appointments - Unauthorized",
+      "endpoint": "/api/admin/appointments",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC029",
+      "name": "Admin View Appointments - Forbidden",
+      "endpoint": "/api/admin/appointments",
+      "method": "GET",
+      "role": "doctor",
+      "expected_status": 403
+    },
+    {
+      "id": "TC030",
+      "name": "Doctor View Appointments - Success",
+      "endpoint": "/api/doctor/appointments",
+      "method": "GET",
+      "role": "doctor",
+      "expected_status": 200
+    },
+    {
+      "id": "TC031",
+      "name": "Doctor View Appointments - Unauthorized",
+      "endpoint": "/api/doctor/appointments",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC032",
+      "name": "Doctor View Appointments - Forbidden",
+      "endpoint": "/api/doctor/appointments",
+      "method": "GET",
+      "role": "patient",
+      "expected_status": 403
+    },
+    {
+      "id": "TC033",
+      "name": "Doctor Get Own Slots - Success",
+      "endpoint": "/api/doctor/slots",
+      "method": "GET",
+      "role": "doctor",
+      "expected_status": 200
+    },
+    {
+      "id": "TC034",
+      "name": "Doctor Get Own Slots - Unauthorized",
+      "endpoint": "/api/doctor/slots",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC035",
+      "name": "Doctor Get Own Slots - Forbidden",
+      "endpoint": "/api/doctor/slots",
+      "method": "GET",
+      "role": "admin",
+      "expected_status": 403
+    },
+    {
+      "id": "TC036",
+      "name": "Patient View Hospitals - Success",
+      "endpoint": "/api/patient/hospitals",
+      "method": "GET",
+      "role": "patient",
+      "expected_status": 200
+    },
+    {
+      "id": "TC037",
+      "name": "Patient View Hospitals - Unauthorized",
+      "endpoint": "/api/patient/hospitals",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC038",
+      "name": "Patient View Hospitals - Forbidden",
+      "endpoint": "/api/patient/hospitals",
+      "method": "GET",
+      "role": "doctor",
+      "expected_status": 403
+    },
+    {
+      "id": "TC039",
+      "name": "Patient View Appointments - Success",
+      "endpoint": "/api/patient/appointments",
+      "method": "GET",
+      "role": "patient",
+      "expected_status": 200
+    },
+    {
+      "id": "TC040",
+      "name": "Patient View Appointments - Unauthorized",
+      "endpoint": "/api/patient/appointments",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC041",
+      "name": "Patient View Appointments - Forbidden",
+      "endpoint": "/api/patient/appointments",
+      "method": "GET",
+      "role": "admin",
+      "expected_status": 403
+    },
+    {
+      "id": "TC042",
+      "name": "Patient View Prescriptions - Success",
+      "endpoint": "/api/patient/prescriptions",
+      "method": "GET",
+      "role": "patient",
+      "expected_status": 200
+    },
+    {
+      "id": "TC043",
+      "name": "Patient View Prescriptions - Unauthorized",
+      "endpoint": "/api/patient/prescriptions",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC044",
+      "name": "Patient View Prescriptions - Forbidden",
+      "endpoint": "/api/patient/prescriptions",
+      "method": "GET",
+      "role": "admin",
+      "expected_status": 403
+    },
+    {
+      "id": "TC045",
+      "name": "Doctor View Prescriptions - Success",
+      "endpoint": "/api/doctor/prescriptions",
+      "method": "GET",
+      "role": "doctor",
+      "expected_status": 200
+    },
+    {
+      "id": "TC046",
+      "name": "Doctor View Prescriptions - Unauthorized",
+      "endpoint": "/api/doctor/prescriptions",
+      "method": "GET",
+      "expected_status": 401
+    },
+    {
+      "id": "TC047",
+      "name": "Doctor View Prescriptions - Forbidden",
+      "endpoint": "/api/doctor/prescriptions",
+      "method": "GET",
+      "role": "patient",
+      "expected_status": 403
+    },
+    {
+      "id": "TC048",
+      "name": "Admin Associate Doctor - Success",
+      "endpoint": "/api/admin/doctor/add",
+      "method": "POST",
+      "role": "admin",
+      "payload": {
+        "doctor_id": "DOC001"
+      },
+      "expected_status": 200
+    },
+    {
+      "id": "TC049",
+      "name": "Admin Associate Doctor - Missing Doctor ID",
+      "endpoint": "/api/admin/doctor/add",
+      "method": "POST",
+      "role": "admin",
+      "payload": {},
+      "expected_status": 400
+    },
+    {
+      "id": "TC050",
+      "name": "Admin Associate Doctor - Forbidden",
+      "endpoint": "/api/admin/doctor/add",
+      "method": "POST",
+      "role": "doctor",
+      "payload": {
+        "doctor_id": "DOC001"
+      },
+      "expected_status": 403
+    }
+  ]
+}

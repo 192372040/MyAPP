@@ -1,0 +1,47 @@
+name: Selenium Automation CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Setup Chrome & WebDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Run Selenium Tests
+        run: |
+          cd selenium-tests
+          mvn clean test -Dbrowser=chrome -Dheadless=true -DappUrl=http://localhost:8080
+
+      - name: Upload Extent Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Extent-Report
+          path: selenium-tests/reports/
+
+      - name: Upload Allure Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Allure-Results
+          path: selenium-tests/allure-results/

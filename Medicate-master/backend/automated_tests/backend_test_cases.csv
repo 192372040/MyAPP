@@ -1,0 +1,99 @@
+Test Case ID,Test Case Name,API Endpoint,HTTP Method,Required Role,Request Payload (JSON),Expected HTTP Status,Description
+TC001,Admin Registration - Success,/api/admin/register,POST,Public,"{
+  ""name"": ""City General Hospital"",
+  ""address"": ""123 Health Ave, NY"",
+  ""email"": ""admin@citygeneral.com"",
+  ""password"": ""AdminSecurePassword123""
+}",201,Verifies Admin Registration - Success behavior for the /api/admin/register endpoint using POST.
+TC002,Admin Registration - Missing Fields,/api/admin/register,POST,Public,"{
+  ""name"": ""City General Hospital"",
+  ""email"": ""admin@citygeneral.com""
+}",400,Verifies Admin Registration - Missing Fields behavior for the /api/admin/register endpoint using POST.
+TC003,Admin Login - Success,/api/admin/login,POST,Public,"{
+  ""hospital_id"": ""HOSP001"",
+  ""password"": ""AdminSecurePassword123""
+}",200,Verifies Admin Login - Success behavior for the /api/admin/login endpoint using POST.
+TC004,Admin Login - Invalid Credentials,/api/admin/login,POST,Public,"{
+  ""hospital_id"": ""HOSP001"",
+  ""password"": ""WrongPassword123""
+}",401,Verifies Admin Login - Invalid Credentials behavior for the /api/admin/login endpoint using POST.
+TC005,Doctor Registration - Success,/api/doctor/register,POST,Public,"{
+  ""name"": ""Dr. Sarah Connor"",
+  ""specialization"": ""Cardiology"",
+  ""qualification"": ""MD, FACC"",
+  ""experience"": 12,
+  ""phone"": ""+15550192"",
+  ""email"": ""sarah@citygeneral.com"",
+  ""password"": ""DoctorSecretPassword123""
+}",201,Verifies Doctor Registration - Success behavior for the /api/doctor/register endpoint using POST.
+TC006,Doctor Registration - Missing Qualification,/api/doctor/register,POST,Public,"{
+  ""name"": ""Dr. Sarah Connor"",
+  ""specialization"": ""Cardiology"",
+  ""experience"": 12,
+  ""phone"": ""+15550192"",
+  ""email"": ""sarah@citygeneral.com"",
+  ""password"": ""DoctorSecretPassword123""
+}",400,Verifies Doctor Registration - Missing Qualification behavior for the /api/doctor/register endpoint using POST.
+TC007,Doctor Login - Success,/api/doctor/login,POST,Public,"{
+  ""doctor_id"": ""DOC001"",
+  ""password"": ""DoctorSecretPassword123""
+}",200,Verifies Doctor Login - Success behavior for the /api/doctor/login endpoint using POST.
+TC008,Doctor Login - Missing ID,/api/doctor/login,POST,Public,"{
+  ""password"": ""DoctorSecretPassword123""
+}",400,Verifies Doctor Login - Missing ID behavior for the /api/doctor/login endpoint using POST.
+TC009,Patient OTP Send - Success,/api/patient/otp/send,POST,Public,"{
+  ""email"": ""john.doe@gmail.com""
+}",200,Verifies Patient OTP Send - Success behavior for the /api/patient/otp/send endpoint using POST.
+TC010,Patient OTP Send - Missing Email,/api/patient/otp/send,POST,Public,{},400,Verifies Patient OTP Send - Missing Email behavior for the /api/patient/otp/send endpoint using POST.
+TC011,Patient Registration - Success,/api/patient/register,POST,Public,"{
+  ""name"": ""John Doe"",
+  ""email"": ""john.doe@gmail.com"",
+  ""password"": ""PatientPassword123"",
+  ""phone"": ""+15550100"",
+  ""otp"": ""112233""
+}",201,Verifies Patient Registration - Success behavior for the /api/patient/register endpoint using POST.
+TC012,Patient Registration - Invalid OTP,/api/patient/register,POST,Public,"{
+  ""name"": ""John Doe"",
+  ""email"": ""john.doe@gmail.com"",
+  ""password"": ""PatientPassword123"",
+  ""phone"": ""+15550100"",
+  ""otp"": ""999999""
+}",400,Verifies Patient Registration - Invalid OTP behavior for the /api/patient/register endpoint using POST.
+TC013,Patient Login - Success,/api/patient/login,POST,Public,"{
+  ""email"": ""john.doe@gmail.com"",
+  ""password"": ""PatientPassword123""
+}",200,Verifies Patient Login - Success behavior for the /api/patient/login endpoint using POST.
+TC014,Doctor Add Availability Slot - Success,/api/doctor/slots,POST,doctor,"{
+  ""date"": ""2026-06-15"",
+  ""time"": ""10:30:00""
+}",201,Verifies Doctor Add Availability Slot - Success behavior for the /api/doctor/slots endpoint using POST.
+TC015,Doctor Add Availability Slot - Missing Date,/api/doctor/slots,POST,doctor,"{
+  ""time"": ""10:30:00""
+}",400,Verifies Doctor Add Availability Slot - Missing Date behavior for the /api/doctor/slots endpoint using POST.
+TC016,Patient Book Appointment - Success,/api/patient/appointment/book,POST,patient,"{
+  ""doctor_id"": ""DOC001"",
+  ""hospital_id"": ""HOSP001"",
+  ""date"": ""2026-06-15"",
+  ""time"": ""10:30:00"",
+  ""symptoms"": ""Mild fatigue and sore throat"",
+  ""slot_id"": 1
+}",201,Verifies Patient Book Appointment - Success behavior for the /api/patient/appointment/book endpoint using POST.
+TC017,Patient Book Appointment - Missing Doctor ID,/api/patient/appointment/book,POST,patient,"{
+  ""hospital_id"": ""HOSP001"",
+  ""date"": ""2026-06-15"",
+  ""time"": ""10:30:00""
+}",400,Verifies Patient Book Appointment - Missing Doctor ID behavior for the /api/patient/appointment/book endpoint using POST.
+TC018,Doctor Create Prescription - Success,/api/doctor/prescription/create,POST,doctor,"{
+  ""appointment_id"": 101,
+  ""diagnosis"": ""Seasonal Allergies"",
+  ""medicines"": ""Cetirizine 10mg: Once daily before sleep"",
+  ""instructions"": ""Avoid allergens"",
+  ""follow_up_date"": ""2026-06-30""
+}",201,Verifies Doctor Create Prescription - Success behavior for the /api/doctor/prescription/create endpoint using POST.
+TC019,Doctor Create Prescription - Missing Appointment ID,/api/doctor/prescription/create,POST,doctor,"{
+  ""diagnosis"": ""Seasonal Allergies"",
+  ""medicines"": ""Cetirizine 10mg: Once daily before sleep""
+}",400,Verifies Doctor Create Prescription - Missing Appointment ID behavior for the /api/doctor/prescription/create endpoint using POST.
+TC020,AI Chat Assistant - Success,/api/ai/chat,POST,patient,"{
+  ""message"": ""What are the common symptoms of flu?""
+}",200,Verifies AI Chat Assistant - Success behavior for the /api/ai/chat endpoint using POST.

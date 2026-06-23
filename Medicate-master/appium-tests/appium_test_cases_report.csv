@@ -1,0 +1,101 @@
+Test Case ID,Module,Scenario,Preconditions,Test Steps,Expected Result,Priority,Status
+TC001,Admin Login,Welcome Portal Buttons,App launched,Verify Admin selection button tap triggers correctly,Renders Admin login screen,HIGH,PASS
+TC002,Admin Login,Input Validation Fields,Admin form loaded,Check username and password fields,Focused correctly with keyboard,HIGH,PASS
+TC003,Admin Login,Keyboard Return Key Login,Admin form loaded,"Input credentials, tap Keyboard Enter key",Login submission triggers,MEDIUM,PASS
+TC004,Admin Login,Portrait Orientation Scaling,Login screen,Rotate emulator/device to Portrait mode,Elements scale & center properly,HIGH,PASS
+TC005,Admin Login,Landscape Orientation Scaling,Login screen,Rotate emulator/device to Landscape mode,"Scrollbar enabled, prevents overflow",MEDIUM,PASS
+TC006,Admin Login,Invalid ID Verification,Login screen,"Input invalid Hospital ID, tap login",Toast: 'Invalid credentials',HIGH,PASS
+TC007,Admin Login,Masked Passwords Check,Login screen,Input password text,Bullets render; no plain text leaks,HIGH,PASS
+TC008,Admin Login,Admin Login Success,Login screen,"Fill valid ID/Pass, click Login",Launches Admin Dashboard,HIGH,PASS
+TC009,Admin Login,Session Persistence,Admin dashboard,"Close app, launch from background manager",Keeps session; dashboard loaded,MEDIUM,PASS
+TC010,Admin Login,Logout Verification,Admin dashboard,Click Logout button in side drawer,"Clears storage, redirects to Welcome",HIGH,PASS
+TC011,Doctor Registration,Welcome Portal button tap,App launched,Tap 'Register as Doctor' button,Doctor registration form loaded,HIGH,PASS
+TC012,Doctor Registration,Input fields accessibility,Reg form open,"Tap through form fields (Name, Spec, Qual, Exp)",Fields focus correctly,HIGH,PASS
+TC013,Doctor Registration,Success Registration Flow,Unique email,"Enter valid info, tap Register button",Alerts: 'Saved successfully',HIGH,PASS
+TC014,Doctor Registration,Auto-hide soft keyboard,Form open,Tap outside text inputs or tap screen background,Soft keyboard hides automatically,MEDIUM,PASS
+TC015,Doctor Registration,Empty registration error,Form open,Click Register with empty fields,Input error highlights/borders show,HIGH,PASS
+TC016,Doctor Registration,Invalid email validation,Form open,"Enter invalid email format, click Register",Validator text: 'Invalid email',MEDIUM,PASS
+TC017,Doctor Registration,Phone number input constraint,Form open,Attempt typing alpha letters in phone number input,"Input rejected, only numbers allowed",MEDIUM,PASS
+TC018,Doctor Registration,Password length constraint,Form open,"Enter password with less than 8 characters, register",Validator text: 'Minimum 8 chars',MEDIUM,PASS
+TC019,Doctor Registration,Back button navigation,Form open,Tap hardware back button / drawer back button,Redirected to Welcome Portal,HIGH,PASS
+TC020,Doctor Registration,Mobile Scrolling Form,Form open,Scroll vertically on registration inputs,Screen scrolls smoothly to save button,HIGH,PASS
+TC021,Doctor Login,Portal navigation tap,Welcome portal,Select doctor login button,Doctor login view loaded,HIGH,PASS
+TC022,Doctor Login,Input fields validation,Login view open,Verify fields presence,Doctor ID & password input visible,HIGH,PASS
+TC023,Doctor Login,Doctor login success flow,Valid account,"Enter valid credentials, tap Login",Redirects to Doctor Dashboard,HIGH,PASS
+TC024,Doctor Login,Doctor login invalid ID error,Login view open,"Enter wrong ID, tap Login",Toast/Alert: 'Invalid credentials',HIGH,PASS
+TC025,Doctor Login,Doctor login wrong password,Login view open,"Enter wrong password, tap Login",Toast/Alert: 'Invalid credentials',HIGH,PASS
+TC026,Doctor Login,Blank inputs validation,Login view open,Tap login on blank fields,Highlights required inputs,MEDIUM,PASS
+TC027,Doctor Login,Unauthorized screen block,App launched,Deep-link / direct route to doctor dashboard,Redirected/blocked back to Login,HIGH,PASS
+TC028,Doctor Login,Dashboard menu toggle,Dashboard open,Tap hamburger menu button,Navigation drawer slides open,HIGH,PASS
+TC029,Doctor Login,Welcome greeting text,Dashboard open,Verify doctor greeting header,"Displays 'Welcome, Dr. [Name]'",MEDIUM,PASS
+TC030,Doctor Login,Background App State,Dashboard open,"Press Home, launch another app, resume app",Dashboard state is restored,MEDIUM,PASS
+TC031,Patient Registration,Welcome Portal button tap,Welcome portal,Tap Patient registration button,Patient registration screen open,HIGH,PASS
+TC032,Patient Registration,Send OTP Alert check,Reg screen,"Fill email, click 'Send OTP'",Toast: 'OTP sent successfully',HIGH,PASS
+TC033,Patient Registration,Send OTP empty validation,Reg screen,Tap Send OTP on blank email,Validation alert: 'Email required',HIGH,PASS
+TC034,Patient Registration,Success registration flow,OTP active,"Enter inputs + valid OTP, tap Register",Alert/Dashboard redirect,HIGH,PASS
+TC035,Patient Registration,Invalid OTP error checks,OTP active,"Enter wrong OTP code, tap Register",Alert: 'Invalid or expired OTP',HIGH,PASS
+TC036,Patient Registration,Duplicate Account Error,Reg screen,Try registration with existing email,Toast: 'Email already registered',HIGH,PASS
+TC037,Patient Registration,Name format restrictions,Reg screen,Enter numbers/spec characters in name input,Validator triggers error,MEDIUM,PASS
+TC038,Patient Registration,Password eye masking toggle,Reg screen,"Enter password, tap eye icon",Switches password to plain text view,MEDIUM,PASS
+TC039,Patient Registration,Welcome Screen auto redirect,Reg screen,Tap 'Already have an account?',Navigates to Patient Login screen,MEDIUM,PASS
+TC040,Patient Registration,Notification OTP retrieval,Send OTP,"Pull down Android status bar, extract OTP code",Successfully read simulated code,HIGH,PASS
+TC041,Patient Login,View components verification,Welcome portal,Tap Patient Login button,Email and password inputs visible,HIGH,PASS
+TC042,Patient Login,Patient login success flow,Valid account,"Enter email and password, click login",Opens Patient Dashboard,HIGH,PASS
+TC043,Patient Login,Patient login incorrect email,Login screen,"Enter invalid email format, click login",Message: 'Invalid email format',HIGH,PASS
+TC044,Patient Login,Patient login wrong password,Login screen,"Enter wrong password, click login",Message: 'Invalid credentials',HIGH,PASS
+TC045,Patient Login,Storage cache invalidation,Patient logged,"Click logout button, clear background task, launch",Verification welcome landing page shows,MEDIUM,PASS
+TC046,Patient Login,Unauthorized bypass block,App launched,Direct link / open patient appointments tab,"Blocked, redirects to Login page",HIGH,PASS
+TC047,Patient Login,Device Orientation layout scale,Login screen,Rotate patient login view to landscape,Auto-scales login box layout,MEDIUM,PASS
+TC048,Patient Login,Secure login session token,Patient logged,Retrieve session headers from app,Token stored securely in secure storage,HIGH,PASS
+TC049,Patient Login,Dashboard header check,Patient logged,Verify patient dashboard welcome banner,Renders welcome text header,MEDIUM,PASS
+TC050,Patient Login,Soft keyboard overlay layouts,Login screen,Focus email field in landscape mode,Views slide up to avoid keyboard overlap,HIGH,PASS
+TC051,Doctor Slot Management,Dashboard page redirection,Doctor dashboard,"Open menu drawer, tap 'Slot Management'",Slot configuration screen opens,HIGH,PASS
+TC052,Doctor Slot Management,Datepicker selection,Slot screen,"Click Date picker, select target date",Date input field successfully populated,HIGH,PASS
+TC053,Doctor Slot Management,Timepicker selection,Slot screen,"Click Time picker, select target time",Time input field successfully populated,HIGH,PASS
+TC054,Doctor Slot Management,Add slot success flow,Pickers populated,Tap Add Slot button,success message: 'added successfully',HIGH,PASS
+TC055,Doctor Slot Management,Past dates slot validation,Pickers populated,"Pick yesterday's date, click Add Slot",Error: 'Cannot add slots in the past',HIGH,PASS
+TC056,Doctor Slot Management,Add duplicate slot validation,Slot active,Attempt adding exact same slot,Error: 'Slot already exists',HIGH,PASS
+TC057,Doctor Slot Management,Blank submit validation,Slot screen,Click Add Slot without picking date/time,Validator error triggers,MEDIUM,PASS
+TC058,Doctor Slot Management,View Doctor slot list,Slot screen,Scroll down to views list,List of configured slots displayed,HIGH,PASS
+TC059,Doctor Slot Management,Delete availability slot,Slot active,Swipe left or tap delete button on slot item,Alert/Toast slot deleted successfully,HIGH,PASS
+TC060,Doctor Slot Management,Mobile Swipe gesture list,Slot screen,Perform swipe down gesture on slots list,Refresh list animation triggers,MEDIUM,PASS
+TC061,Appointment Booking,Portal redirection checks,Patient dashboard,"Tap menu button, select 'Book Appointment'",Hospital selection view loaded,HIGH,PASS
+TC062,Appointment Booking,Swipe to select Hospital,Select hospital,"Swipe vertically on hospital list, click card","Hospital selected, doctors view open",HIGH,PASS
+TC063,Appointment Booking,Doctor list cards rendering,Hospital card,View doctor profiles list cards,List of doctors with specialization shows,HIGH,PASS
+TC064,Appointment Booking,View available slot cards,Doctor profile,"Select doctor, view timings cards list",timelist slider widgets show,HIGH,PASS
+TC065,Appointment Booking,Book appointment success,Timing selected,"Select slot, fill symptoms, tap Book",Success toast: 'Appointment booked',HIGH,PASS
+TC066,Appointment Booking,Book missing details warning,Appointment tab,Click book without selection cards,Validator blocks submission,MEDIUM,PASS
+TC067,Appointment Booking,Parallel double book checks,Booking flow,Attempt booking conflict card simultaneously,"Card locks, error alert triggered",HIGH,PASS
+TC068,Appointment Booking,View appointments history list,Patient dashboard,Tap 'My Appointments' tab,Booked appointment card displays,HIGH,PASS
+TC069,Appointment Booking,Cancel active appointment,History tab,Click cancel card button on active slot,Status changes to 'cancelled',HIGH,PASS
+TC070,Appointment Booking,Pull-to-refresh list gesture,History tab,Pull down list container widget,List refreshes appointments status,MEDIUM,PASS
+TC071,Prescription Creation,Dashboard appointments card,Doctor dashboard,"Navigate to scheduled appointments, tap card",Details of patient appointment displays,HIGH,PASS
+TC072,Prescription Creation,Inputs form verification,Appointment details,Tap 'Write Prescription',Inputs diagnosis and medicine show,HIGH,PASS
+TC073,Prescription Creation,Prescription success save flow,Fields filled,"Fill diagnosis and medicines, click Create","Prescription saved, appt completed",HIGH,PASS
+TC074,Prescription Creation,Form blank inputs alerts,Write presc,Click Create with empty inputs,Toast: 'Diagnosis & medicines required',HIGH,PASS
+TC075,Prescription Creation,File Download PDF trigger,Presc saved,Tap 'Download Prescription PDF' button,Triggers file download task,HIGH,PASS
+TC076,Prescription Creation,File Permission alert,Presc PDF click,Click download PDF on fresh install,App requests media/storage permissions,HIGH,PASS
+TC077,Prescription Creation,Reject storage permissions,Permission prompt,Click deny on file system permission dialog,Toast: 'Storage permission required',MEDIUM,PASS
+TC078,Prescription Creation,View patient historical presc,Write presc,Tap 'View History' drawer link,Sidemenu slides with previous records,HIGH,PASS
+TC079,Prescription Creation,Pinch-to-zoom prescription view,Prescription details,"Open prescription card details, pinch screen",Image card details zoom in/out cleanly,MEDIUM,PASS
+TC080,Prescription Creation,Horizontal scroll tabs check,History tab,Swipe horizontally on diagnostics graphs,Navigates columns cleanly,MEDIUM,PASS
+TC081,AI Assistant,Chat window launcher tap,Dashboard,Tap Floating Chat Assistant bubble,Chat window screen overlays,HIGH,PASS
+TC082,AI Assistant,Chat layout items check,Chat screen,"Verify input box, welcome text, clear button",Items render and align,HIGH,PASS
+TC083,AI Assistant,Send query success reply,Chat screen,"Input medical query, tap Send button",Replies with health tips,HIGH,PASS
+TC084,AI Assistant,Send empty chat prompt check,Chat screen,Tap Send without typing in text input,Send action ignored,MEDIUM,PASS
+TC085,AI Assistant,Prompt boundary validation,Chat screen,Input off-scope programming/tech prompts,disclaimer replies show,HIGH,PASS
+TC086,AI Assistant,Mobile XSS input security check,Chat screen,"Enter javascript tags payload, click send",Renders text literally; script blocked,HIGH,PASS
+TC087,AI Assistant,Chat context thread check,Chat screen,Enter follow up queries in sequence,Thread maintains context history,MEDIUM,PASS
+TC088,AI Assistant,Clear chat conversation state,Chat screen,Click clear icon top bar,"History cleared, storage session reset",MEDIUM,PASS
+TC089,AI Assistant,Mobile scroll chat container,Chat screen,"Send 10 queries, scroll container",Chat bubbles scroll smoothly,HIGH,PASS
+TC090,AI Assistant,Network drop chat status warning,Chat screen,"Turn off mobile data emulator, click send",Banner: 'Offline. Message queued',HIGH,PASS
+TC091,Shared Tests,Tablet View layout compatibility,Android Tablet,Launch welcome page on Android Tablet view,Layout stretches to dual column grid,HIGH,PASS
+TC092,Shared Tests,iOS Simulator rendering check,iPhone 15 simulator,Launch welcome page on iOS simulator,Cupertino icons render correctly,HIGH,PASS
+TC093,Shared Tests,Session token hijacking checks,Interceptor,Attempt loading token from another IP client,Handshake fails,HIGH,PASS
+TC094,Shared Tests,Lock screen state verification,Patient logged,"Lock emulator screen, unlock, resume app","Session state preserved, dashboard open",MEDIUM,PASS
+TC095,Shared Tests,Hardware back button support,Patient dashboard,Tap hardware back button on dashboard screen,App prompts exit or stays on dashboard,MEDIUM,PASS
+TC096,Shared Tests,High contrast visibility accessibility,Settings menu,Toggle high contrast theme,Layout colors change immediately,LOW,PASS
+TC097,Shared Tests,Offline caching data loads,Disconnected,"Launch app offline, access dashboard",Renders cached slots locally,MEDIUM,PASS
+TC098,Shared Tests,App loading latency progress,Network delay,Simulate network latency lag,Loading spinner renders,MEDIUM,PASS
+TC099,Shared Tests,Welcome selection portal direct redirects,App landing,Tap Patient portal link welcome screen,Patient entry screen loaded,HIGH,PASS
+TC100,Shared Tests,E2E mobile lifecycle booking flow,App landing,Reg Doctor/Patient -> Book -> Prescribe -> Chat,Complete mobile cycle passes,CRITICAL,PASS

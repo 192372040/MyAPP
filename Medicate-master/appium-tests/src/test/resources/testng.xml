@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Healthcare Appium Mobile Test Suite" parallel="classes" thread-count="2">
+    <test name="Android Mobile Automation Tests">
+        <parameter name="platform" value="android"/>
+        <parameter name="deviceName" value="Android Emulator"/>
+        <parameter name="platformVersion" value="13.0"/>
+        <parameter name="udid" value=""/>
+        <parameter name="appPath" value="app-release.apk"/>
+        <classes>
+            <class name="com.medicate.tests.MobileHealthcareTests"/>
+        </classes>
+    </test>
+</suite>
