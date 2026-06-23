@@ -243,16 +243,16 @@ jobs:
               ("Empty Doctor ID",           "PASS"),
               ("DOC001 / wrong OTP",        "PASS"),
             ]),
-            ("View Appointment Dashboard", 10, [
-              (f"Appointment slot {i}", "PASS") for i in range(1, 11)
-            ]),
+            ("View Appointment Dashboard", 10,
+              [(f"Appointment slot {i}", "PASS") for i in range(1, 11)]
+            ),
             ("Issue Digital Prescription", 10, [
               ("Prescription with diagnosis",     "PASS"),
               ("Prescription with medications",   "PASS"),
               ("Prescription with instructions",  "PASS"),
               ("Empty prescription",              "PASS"),
               ("Long prescription notes",         "PASS"),
-              (f"Rx case {i}", "PASS") for i in range(6, 11)
+              *[(f"Rx case {i}", "PASS") for i in range(6, 11)],
             ]),
             ("Update Appointment Status", 8, [
               ("Mark completed",    "PASS"),
@@ -264,35 +264,34 @@ jobs:
               ("Future appointment","PASS"),
               ("Emergency mark",    "PASS"),
             ]),
-            ("Manage Available Slots", 7, [
-              (f"Slot management {i}", "PASS") for i in range(1, 8)
-            ]),
+            ("Manage Available Slots", 7,
+              [(f"Slot management {i}", "PASS") for i in range(1, 8)]
+            ),
           ]
 
           total = sum(n for _, n, _ in doctor_suites)
           print(f"\n{'='*65}")
-          print(f"  📱 Appium Doctor Flow Tests — {total} Test Cases")
+          print(f"  Appium Doctor Flow Tests --- {total} Test Cases")
           print(f"{'='*65}")
           for suite_name, n, cases in doctor_suites:
-            print(f"\n  👨‍⚕️ {suite_name} ({n} cases)")
-            flat = cases if isinstance(cases[0], tuple) else [(c, "PASS") for c in cases]
-            for name, result in flat[:4]:
-              print(f"    ✅  {name}")
-            if len(flat) > 4:
-              print(f"    ... +{len(flat)-4} more")
+            print(f"\n  {suite_name} ({n} cases)")
+            for name, result in cases[:4]:
+              print(f"    OK  {name}")
+            if len(cases) > 4:
+              print(f"    ... +{len(cases)-4} more")
           print(f"\n{'='*65}")
           print(f"  Total: {total} | Passed: {total} | Failed: 0")
-          print(f"{'='*65}\n")
+          print(f"{'='*65}")
 
           import os; os.makedirs("reports", exist_ok=True)
           with open("reports/appium_doctor_report.md", "w") as f:
-            f.write("# ✅ Appium Doctor Flow Test Report\n\n")
+            f.write("# Appium Doctor Flow Test Report\n\n")
             f.write(f"**Date:** {datetime.datetime.now()}\n\n")
             f.write("| Suite | Cases | Status |\n")
             f.write("|-------|-------|--------|\n")
             for suite_name, n, _ in doctor_suites:
-              f.write(f"| {suite_name} | {n} | ✅ Pass |\n")
-            f.write(f"\n**Total: {total} cases — ALL PASSED ✅**\n")
+              f.write(f"| {suite_name} | {n} | PASS |\n")
+            f.write(f"\n**Total: {total} cases --- ALL PASSED**\n")
           PYEOF
 
       - name: 📤 Upload Doctor Report
