@@ -1,0 +1,80 @@
+[
+  {
+    "endpoint": "AdminAuth.py",
+    "method": "STATIC",
+    "role": "N/A",
+    "status": 0,
+    "expected_status": 0,
+    "finding": true,
+    "severity": "CRITICAL",
+    "response_time_ms": 0,
+    "test_category": "hardcoded_creds",
+    "note": "[SendGrid API key] line 64: SG.NVY...vz2s",
+    "timestamp": "2026-06-22T04:06:11Z"
+  },
+  {
+    "endpoint": "auth.py",
+    "method": "STATIC",
+    "role": "N/A",
+    "status": 0,
+    "expected_status": 0,
+    "finding": true,
+    "severity": "CRITICAL",
+    "response_time_ms": 0,
+    "test_category": "hardcoded_creds",
+    "note": "[SendGrid API key] line 45: SG.NVY...vz2s",
+    "timestamp": "2026-06-22T04:06:11Z"
+  },
+  {
+    "endpoint": "db.py",
+    "method": "STATIC",
+    "role": "N/A",
+    "status": 0,
+    "expected_status": 0,
+    "finding": true,
+    "severity": "CRITICAL",
+    "response_time_ms": 0,
+    "test_category": "hardcoded_creds",
+    "note": "[Hardcoded password] line 7: passwo...ord\"",
+    "timestamp": "2026-06-22T04:06:11Z"
+  },
+  {
+    "endpoint": "razorpay_integration.py",
+    "method": "STATIC",
+    "role": "N/A",
+    "status": 0,
+    "expected_status": 0,
+    "finding": true,
+    "severity": "CRITICAL",
+    "response_time_ms": 0,
+    "test_category": "hardcoded_creds",
+    "note": "[Razorpay key ID] line 6: rzp_te...C1Gl",
+    "timestamp": "2026-06-22T04:06:11Z"
+  },
+  {
+    "endpoint": "razorpay_integration.py",
+    "method": "STATIC",
+    "role": "N/A",
+    "status": 0,
+    "expected_status": 0,
+    "finding": true,
+    "severity": "CRITICAL",
+    "response_time_ms": 0,
+    "test_category": "hardcoded_creds",
+    "note": "[Razorpay key secret] line 7: RAZORP...UAq\"",
+    "timestamp": "2026-06-22T04:06:11Z"
+  },
+  {
+    "endpoint": "automated_test\\01_authn_bypass.py",
+    "method": "STATIC",
+    "role": "N/A",
+    "status": 0,
+    "expected_status": 0,
+    "finding": true,
+    "severity": "CRITICAL",
+    "response_time_ms": 0,
+    "test_category": "hardcoded_creds",
+    "note": "[Bearer token literal] line 51: Bearer...IRED",
+    "timestamp": "2026-06-22T04:06:11Z"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "name": "mediconnect-selenium-tests",
+  "version": "1.0.0",
+  "description": "Selenium E2E tests for MediConnect web app",
+  "scripts": {
+    "test": "mocha tests/**/*.test.js --timeout 60000 --reporter spec",
+    "login": "mocha tests/login.test.js --timeout 60000 --reporter spec",
+    "navigation": "mocha tests/navigation.test.js --timeout 60000 --reporter spec"
+  },
+  "devDependencies": {
+    "mocha": "^10.4.0",
+    "selenium-webdriver": "^4.21.0",
+    "chromedriver": "^126.0.0"
+  }
+}

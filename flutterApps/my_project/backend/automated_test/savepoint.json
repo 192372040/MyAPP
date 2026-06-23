@@ -1,0 +1,360 @@
+{
+  "base_url": "http://localhost:5000",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Home check"
+    },
+    {
+      "method": "GET",
+      "path": "/test-db",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Exposes DB name \u2014 info leak"
+    },
+    {
+      "method": "POST",
+      "path": "/send-otp",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Patient OTP trigger"
+    },
+    {
+      "method": "POST",
+      "path": "/verify-otp",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Patient OTP verify / login"
+    },
+    {
+      "method": "POST",
+      "path": "/update-profile",
+      "auth": "auth",
+      "roles": [
+        "patient"
+      ],
+      "notes": "Create/update patient profile \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/hospitals",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "List hospitals"
+    },
+    {
+      "method": "GET",
+      "path": "/doctors/<hospital_id>",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "List doctors by hospital"
+    },
+    {
+      "method": "POST",
+      "path": "/book-appointment",
+      "auth": "auth",
+      "roles": [
+        "patient"
+      ],
+      "notes": "Book appointment \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/booked-slots",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Booked slots"
+    },
+    {
+      "method": "POST",
+      "path": "/save-doctor-details",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Save doctor details \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/save-hospital-details",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Save hospital details \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-doctor-summary",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Get doctor summary \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/save-professional-details",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Save professional details \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-doctor-profile",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Get doctor profile \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/save-password",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Save doctor password \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/doctor-login",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Doctor login"
+    },
+    {
+      "method": "POST",
+      "path": "/forgot-doctor-id",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Forgot doctor ID"
+    },
+    {
+      "method": "POST",
+      "path": "/send-admin-otp",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Admin OTP trigger"
+    },
+    {
+      "method": "POST",
+      "path": "/save-admin-hospital",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Save admin hospital \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/verify-hospital-id",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Verify hospital ID"
+    },
+    {
+      "method": "POST",
+      "path": "/save-admin-password",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Save admin password \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-admin-hospital-summary",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Admin hospital summary \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/admin-login",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Admin login"
+    },
+    {
+      "method": "POST",
+      "path": "/forgot-admin-id",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "Forgot admin ID"
+    },
+    {
+      "method": "POST",
+      "path": "/add-doctor-to-hospital",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Add doctor to hospital \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-hospital-doctors",
+      "auth": "auth",
+      "roles": [
+        "admin",
+        "doctor"
+      ],
+      "notes": "Get hospital doctors \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-doctor-appointments",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Doctor appointments \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/save-prescription",
+      "auth": "auth",
+      "roles": [
+        "doctor"
+      ],
+      "notes": "Save prescription \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-patient-profile",
+      "auth": "auth",
+      "roles": [
+        "patient",
+        "doctor"
+      ],
+      "notes": "Get patient profile \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-patient-prescriptions",
+      "auth": "auth",
+      "roles": [
+        "patient"
+      ],
+      "notes": "Get patient prescriptions \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/ai-chat",
+      "auth": "public",
+      "roles": [
+        "*"
+      ],
+      "notes": "AI chat"
+    },
+    {
+      "method": "GET",
+      "path": "/get-patient-appointments",
+      "auth": "auth",
+      "roles": [
+        "patient"
+      ],
+      "notes": "Get patient appointments \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/delete-account",
+      "auth": "auth",
+      "roles": [
+        "patient"
+      ],
+      "notes": "Delete account \u2014 no auth guard, DESTRUCTIVE"
+    },
+    {
+      "method": "POST",
+      "path": "/update-appointment-status",
+      "auth": "auth",
+      "roles": [
+        "doctor",
+        "admin"
+      ],
+      "notes": "Update appt status \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-hospital-appointments",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Hospital appointments \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/create-razorpay-order",
+      "auth": "auth",
+      "roles": [
+        "patient"
+      ],
+      "notes": "Create payment order \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-hospital-beds",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Get beds \u2014 no auth guard"
+    },
+    {
+      "method": "POST",
+      "path": "/update-hospital-beds",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Update beds \u2014 no auth guard"
+    },
+    {
+      "method": "GET",
+      "path": "/get-hospital-analytics",
+      "auth": "auth",
+      "roles": [
+        "admin"
+      ],
+      "notes": "Hospital analytics \u2014 no auth guard"
+    }
+  ],
+  "discovered_at": "2026-06-22T04:06:56Z"
+}
