@@ -1,47 +1,34 @@
 /**
- * MediConnect — Selenium E2E Login Tests
- * Tests the Patient login flow on the deployed GitHub Pages app.
- * 
- * Run locally:  npm run login
- * Run in CI:    npm test (triggered by GitHub Actions)
+ * MediConnect — Selenium E2E Tests
+ * Tests the live MediConnect web app on GitHub Pages.
  */
 
-const { Builder, By, until, Key } = require('selenium-webdriver');
+const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const assert = require('assert');
 
-// ── Configuration ────────────────────────────────────────────────────────────
 const BASE_URL = process.env.BASE_URL || 'https://192372040.github.io/MyAPP';
 const HEADLESS  = process.env.HEADLESS === 'true';
-const TIMEOUT   = 30000; // 30 seconds
+const TIMEOUT   = 25000;
 
-// ── Build Chrome driver ───────────────────────────────────────────────────────
 async function buildDriver() {
   const options = new chrome.Options();
   if (HEADLESS) {
     options.addArguments(
-      '--headless',
-      '--no-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-gpu',
+      '--headless', '--no-sandbox',
+      '--disable-dev-shm-usage', '--disable-gpu',
       '--window-size=1280,800'
     );
   }
-  return new Builder()
-    .forBrowser('chrome')
-    .setChromeOptions(options)
-    .build();
+  return new Builder().forBrowser('chrome').setChromeOptions(options).build();
 }
 
-// ── Test Suite ────────────────────────────────────────────────────────────────
-describe('🏥 MediConnect — Login Flow', function () {
-  this.timeout(TIMEOUT * 2);
-
+describe('🏥 MediConnect — Website Tests', function () {
+  this.timeout(60000);
   let driver;
 
   before(async function () {
-    console.log(`\n  🌐 Testing against: ${BASE_URL}`);
-    console.log(`  🖥️  Headless: ${HEADLESS}\n`);
+    console.log(`\n  🌐 URL: ${BASE_URL}`);
     driver = await buildDriver();
   });
 
@@ -49,91 +36,50 @@ describe('🏥 MediConnect — Login Flow', function () {
     if (driver) await driver.quit();
   });
 
-  // ── Test 1: App Loads ───────────────────────────────────────────────────────
-  it('✅ should load the MediConnect web app', async function () {
+  // ── Test 1: Page loads with correct title ─────────────────────
+  it('✅ should load with title "MediConnect"', async function () {
     await driver.get(BASE_URL);
-
-    // Wait up to 30s for Flutter to initialise (Flutter web takes a moment)
-    await driver.wait(
-      until.titleIs('MediConnect'),
-      TIMEOUT,
-      'Page title should be "MediConnect"'
-    );
-
+    await driver.wait(until.titleIs('MediConnect'), TIMEOUT,
+      'Title should be "MediConnect"');
     const title = await driver.getTitle();
-    assert.strictEqual(title, 'MediConnect', `Expected "MediConnect", got "${title}"`);
-    console.log(`     → App title: "${title}" ✓`);
+    assert.strictEqual(title, 'MediConnect');
+    console.log(`     → Title: "${title}" ✓`);
   });
 
-  // ── Test 2: Flutter Canvas Renders ──────────────────────────────────────────
-  it('✅ should render the Flutter canvas element', async function () {
+  // ── Test 2: Page has content ──────────────────────────────────
+  it('✅ should render page content', async function () {
     await driver.get(BASE_URL);
-
-    // Flutter web renders inside a <flt-glass-pane> shadow host or a <canvas>
-    // Wait for the body to have content
-    await driver.wait(
-      until.elementLocated(By.css('body')),
-      TIMEOUT,
-      'Body should exist'
-    );
-
-    // Give Flutter time to boot
-    await driver.sleep(5000);
-
+    await driver.wait(until.elementLocated(By.css('body')), TIMEOUT);
+    await driver.sleep(2000);
     const body = await driver.findElement(By.css('body'));
-    const bodyHTML = await body.getAttribute('innerHTML');
-    const hasFlutter = bodyHTML.includes('flt-') || bodyHTML.includes('flutter');
-
-    assert.ok(
-      bodyHTML.length > 100,
-      'Page body should have content after Flutter loads'
-    );
-    console.log(`     → Flutter rendered: body length = ${bodyHTML.length} chars ✓`);
+    const text = await body.getText();
+    assert.ok(text.length > 50, 'Page should have visible text content');
+    console.log(`     → Content length: ${text.length} chars ✓`);
   });
 
-  // ── Test 3: Page Title Correct ──────────────────────────────────────────────
-  it('✅ should have correct page metadata', async function () {
+  // ── Test 3: Email input exists ────────────────────────────────
+  it('✅ should have an email input field', async function () {
     await driver.get(BASE_URL);
     await driver.sleep(2000);
-
-    const title = await driver.getTitle();
-    assert.ok(title.length > 0, 'Page should have a title');
-
-    const url = await driver.getCurrentUrl();
-    assert.ok(
-      url.includes('192372040.github.io') || url.includes('localhost'),
-      `URL should be on GitHub Pages. Got: ${url}`
+    const emailField = await driver.wait(
+      until.elementLocated(By.id('email')), TIMEOUT,
+      'Email input should exist'
     );
-
-    console.log(`     → Title: "${title}" ✓`);
-    console.log(`     → URL:   "${url}" ✓`);
+    const isDisplayed = await emailField.isDisplayed();
+    assert.ok(isDisplayed, 'Email input should be visible');
+    console.log(`     → Email field found and visible ✓`);
   });
 
-  // ── Test 4: No Console Errors ───────────────────────────────────────────────
-  it('✅ should load without critical JavaScript errors', async function () {
+  // ── Test 4: Login button exists ───────────────────────────────
+  it('✅ should have a login button', async function () {
     await driver.get(BASE_URL);
-    await driver.sleep(5000);
-
-    // Collect browser console logs
-    const logs = await driver.manage().logs().get('browser');
-    const severeErrors = logs.filter(log =>
-      log.level.name === 'SEVERE' &&
-      !log.message.includes('favicon') &&
-      !log.message.includes('manifest')
+    await driver.sleep(2000);
+    const loginBtn = await driver.wait(
+      until.elementLocated(By.id('login-button')), TIMEOUT,
+      'Login button should exist'
     );
-
-    if (severeErrors.length > 0) {
-      console.warn(`     ⚠️  Console errors detected:`);
-      severeErrors.forEach(e => console.warn(`       - ${e.message}`));
-    }
-
-    // Allow max 2 severe errors (some Flutter errors are acceptable)
-    assert.ok(
-      severeErrors.length <= 2,
-      `Too many severe console errors: ${severeErrors.length}\n` +
-      severeErrors.map(e => e.message).join('\n')
-    );
-
-    console.log(`     → Console errors: ${severeErrors.length} (within limit) ✓`);
+    const text = await loginBtn.getText();
+    assert.ok(text.length > 0, 'Login button should have text');
+    console.log(`     → Login button: "${text}" ✓`);
   });
 });
